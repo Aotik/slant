@@ -1,0 +1,141 @@
+html
+	height 100%
+	width 100%
+
+body
+	font-family font-family-standard
+	font-size font-size-standard
+	color text-grey
+	height 100%
+	max-height 100%
+	width 100%
+	margin 0
+	padding 0
+	// background linear-gradient(138deg, #3F3C74 0, #00C2FF 120%)
+
+.wrapper
+	height 100%
+	width 100%
+	background-image no-repeat
+	background-size cover
+for h in (1..6)
+	h{h}
+		font-size lookup('font-size-h' + h)
+
+::selection
+	color black
+	background-color lighten(primary-color, 80%)
+a
+	color text-link
+	text-decoration none
+	cursor pointer
+	&:hover
+		color text-link-hover
+
+p
+	line-height 1.5em
+
+small
+	font-size .875em
+
+strong
+	font-weight 700
+
+.search
+	text-align center
+	padding 20em 0 0 0
+	.sl-title
+		font-weight 700
+		padding-bottom .2em
+		text-shadow 1px 1px 8px rgba(255, 255, 255, .3)
+		span
+			opacity .65
+	h4
+		color #000
+		opacity .7
+		font-size 1.3em
+		letter-spacing -.3px
+		padding-bottom 1.5em
+
+.selection
+	text-align center
+	position relative
+	margin-top 1.5em
+	& > *
+		display inline-block
+		vertical-align top
+		padding 1px .4em 0 .4em
+		font-size 1.1em
+	.splitter
+		opacity .6
+	.select
+		color #000
+		opacity .5
+		transition all .14s ease
+		cursor pointer
+		letter-spacing .6px
+		position relative
+		font-weight 500
+		&:hover
+			opacity .8
+		&.selected
+			opacity 1
+
+.sub
+	opacity .7
+	padding .8em 0 .3em 0
+	font-weight 400
+	font-size 1.6em
+
+.imdbbtn, .reset
+	display block
+	margin-top .8em
+	width 100%
+
+.information
+	.item
+		span
+			opacity .6
+			margin-right .4em
+
+body.dark
+	#results, .crafted, .crafted:hover, .splitter, .selected, .sl-title, p
+		color #fff
+
+body.light
+	#results, .crafted, .crafted:hover, .splitter, .selected, .sl-title, p
+		color #000
+
+#results
+	padding 10em 0 0 0
+	.poster
+		width 100%
+		height 350px
+		background-size contain
+		background-repeat no-repeat
+		background-position center
+	h3.title
+		font-size 2.6em
+		font-weight 700
+		padding 0 0 .1em 0
+		span
+			opacity .6
+			font-weight 600
+			font-size .8em
+	h5.genres
+		opacity .6
+		margin .4em 0 .2em 0
+	.runtime
+		font-weight 700
+
+.crafted
+	fixed bottom
+	text-align center
+	width 100%
+	display block
+	padding 1.6em
+	opacity .6
+	font-weight 500
+	transition all 0.2s ease
+	&:hover
+		opacity .8

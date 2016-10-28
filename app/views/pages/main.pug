@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+	.wrapper
+		.contain
+			if search
+				.search
+					h1.sl-title Slant
+						span .tv
+					h4 Find a movie by searching by title or IMDB ID
+					.input.lg
+						input.content(type="text")
+						a.go #[i.material-icons search]
+					.selection
+						.select.selected(data-select="title") Movie title
+						.splitter |
+						.select(data-select="imdbid") IMDB ID
+			#results
+		a.crafted Handcrafted by #[strong @aotik]
