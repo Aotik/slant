@@ -34,6 +34,12 @@ $(document).ready(() => {
 		})
 	})
 
+	$('.content').keypress((e) => {
+		if(e.which == 13){
+			$('.go').click()
+		}
+	})
+
 	$('.go').bind('click', (e) => {
 		data = {}
 
@@ -51,7 +57,7 @@ $(document).ready(() => {
 			contentType: 'application/json',
 			data: JSON.stringify(data),
 			success: (results) => {
-				transitionResults(results)
+				transitionResults(results, data.title)
 			}
 		})
 
@@ -62,19 +68,21 @@ $(document).ready(() => {
 		$('body').removeClass('light dark')
 		$('body').css('background-color', '#fff')
 		$('#result').slideUp(120)
+		stateObj = { foo: "Slant" }
+		history.pushState(stateObj, "Slant", "/")
 		$('.search').slideDown(140)
 	}
 
-	transitionResults = (results) => {
-		$('#result, .search, #results').hide()
+	transitionResults = (results, title) => {
+		$('#result, #results').hide()
 		$('#results .within').empty()
 		$('body').removeClass('light dark')
 		$('body').css('background-color', '#fff')
 
-		$('#results .within').append('<div class="class="xs-12"><h3>Search results</h3></div>')
+		$('#results .within').append(`<div class="class="xs-12"><h3>Search results: <span>${title}</span></h3></div>`)
 		results = JSON.parse(results)
-		console.log(results);
 		if (results.Response != 'False') {
+			$('.search').hide()
 			$.each(results.Search, (a,b) => {
 				$('#results .within').append(`
 					<a data-imdb="${b.imdbID}" class="xs-12 js_res">
@@ -83,10 +91,13 @@ $(document).ready(() => {
 					</a>
 				`)
 			})
-
+			stateObj = { foo: "Search results" }
+			history.pushState(stateObj, "Search results", "/search/" + title)
 			$('#results').slideDown(140)
 		} else {
-			console.log('no results')
+			$('.content').addClass('error').delay(4000).queue(() => {
+				$('.content').removeClass('error').dequeue()
+			})
 		}
 	}
 
@@ -102,6 +113,9 @@ $(document).ready(() => {
 
 	appendResult = (res, torrURL) => {
 		$('#result').hide()
+
+		stateObj = { foo: "results" }
+		history.pushState(stateObj, "Results", "/id/" + res.imdbid)
 
 		if (res.poster == "N/A") {
 			res.poster = null

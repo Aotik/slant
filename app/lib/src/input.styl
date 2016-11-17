@@ -23,6 +23,7 @@
 		transition border-color 0.14s ease
 		min-width 220px
 		background-color #fff
+
 	textarea
 		&:not([rows])
 			min-height 8em
@@ -38,7 +39,7 @@
 			border 0
 	.go
 		color rgba(0,0,0,0.3)
-		absolute right 13px top 13px
+		absolute right 12px top 10px
 		transition all 0.2s ease
 		cursor pointer
 		&:hover
@@ -53,6 +54,8 @@
 			width 100%
 			&:focus
 				border-color primary-color
+			&.error
+				border-color color-red !important
 			+placeholder()
 				color #A3CDDB
 .action

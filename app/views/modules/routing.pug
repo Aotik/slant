@@ -1,0 +1,32 @@
+if imdb
+	script.
+		data = {}
+		$('.search').hide()
+		data.id = "#{imdb}"
+		data.url = "/api/v1/imdbid"
+		$.ajax({
+			url: data.url,
+			type: "POST",
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: (data) => {
+				transitionResult(data)
+			}
+		})
+
+if param
+	script.
+		data = {}
+
+		data.title = "#{param}"
+		data.url = "/api/v1/title/search"
+
+		$.ajax({
+			url: data.url,
+			type: "POST",
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: (results) => {
+				transitionResults(results)
+			}
+		})

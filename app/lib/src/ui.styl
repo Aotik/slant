@@ -32,8 +32,8 @@ a
 	&:hover
 		color text-link-hover
 
-p
-	line-height 1.5em
+p, .item
+	line-height 1.7em
 
 small
 	font-size .875em
@@ -43,13 +43,15 @@ strong
 
 .search
 	text-align center
-	padding 20em 0 0 0
+	padding 22em 0 0 0
+	display none
+	&.show
+		display block
 	.sl-title
-		font-weight 700
-		padding-bottom .2em
-		text-shadow 1px 1px 8px rgba(255, 255, 255, .3)
-		span
-			opacity .65
+		padding-bottom .14em
+		img
+			height .9em
+			pointer-events none
 	h4
 		color #000
 		opacity .7
@@ -83,7 +85,7 @@ strong
 
 .sub
 	opacity .7
-	padding .8em 0 .3em 0
+	padding 1em 0 .3em 0
 	font-weight 400
 	font-size 1.6em
 
@@ -106,20 +108,29 @@ body.dark
 
 body.light
 	#results, .crafted, .crafted:hover, .splitter, .selected, .sl-title, p, .title, .sub, .list .item, .genres, .runtime, .horizontal.list li a
-		color #000
+		color #1a1d1e
 	.footer
-		border-top 1px solid rgba(#000, .08)
+		border-top 1px solid rgba(#1a1d1e, .08)
 
 #results
-	padding 7em 0
 	display none
+	.footer
+		margin-top 0
+
+#results .within
+	padding 9em 0 0 0
+	cf()
 	h3
 		font-weight 700
 		font-size 2.6em
-		padding 0 0 .4em 0
+		padding 0 0 .5em 0
+		span
+			font-weight 300
+			opacity .6
 	a
 		padding .9em 0
 		font-size 1.3em
+		line-height	 1.4em
 		& + a
 			border-top 1px solid border-gray
 		&:hover
@@ -134,6 +145,17 @@ body.light
 			float right
 			color border-gray
 
+.header
+	.logo
+		fixed top 2em left 2em
+		opacity .7
+		cursor pointer
+		transition all .14s ease
+		&:hover
+			opacity 1
+		img
+			height 2.6em
+			pointer-events none
 .footer
 	padding 1em 0
 	border-top 1px solid border-gray
@@ -147,6 +169,7 @@ body.light
 				opacity .6
 				&:hover
 					opacity 1
+
 #result
 	padding 10em 0 0 0
 	display none

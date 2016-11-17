@@ -100,8 +100,8 @@ html {
   width: 100%;
 }
 body {
-  font-family: 'freight-sans-pro', 'Open Sans', sans-serif;
-  font-size: 15px;
+  font-family: 'proxima-nova', sans-serif;
+  font-size: 14px;
   color: #3e464a;
   height: 100%;
   max-height: 100%;
@@ -147,8 +147,9 @@ a {
 a:hover {
   color: #0064bf;
 }
-p {
-  line-height: 1.5em;
+p,
+.item {
+  line-height: 1.7em;
 }
 small {
   font-size: 0.875em;
@@ -158,17 +159,18 @@ strong {
 }
 .search {
   text-align: center;
-  padding: 20em 0 0 0;
+  padding: 22em 0 0 0;
+  display: none;
+}
+.search.show {
+  display: block;
 }
 .search .sl-title {
-  font-weight: 700;
-  padding-bottom: 0.2em;
-  text-shadow: 1px 1px 8px rgba(255,255,255,0.3);
+  padding-bottom: 0.14em;
 }
-.search .sl-title span {
-  opacity: 0.65;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
-  filter: alpha(opacity=65);
+.search .sl-title img {
+  height: 0.9em;
+  pointer-events: none;
 }
 .search h4 {
   color: #000;
@@ -224,7 +226,7 @@ strong {
   opacity: 0.7;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
   filter: alpha(opacity=70);
-  padding: 0.8em 0 0.3em 0;
+  padding: 1em 0 0.3em 0;
   font-weight: 400;
   font-size: 1.6em;
 }
@@ -272,31 +274,52 @@ body.light .list .item,
 body.light .genres,
 body.light .runtime,
 body.light .horizontal.list li a {
-  color: #000;
+  color: #1a1d1e;
 }
 body.light .footer {
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(26,29,30,0.08);
 }
 #results {
-  padding: 7em 0;
   display: none;
 }
-#results h3 {
+#results .footer {
+  margin-top: 0;
+}
+#results .within {
+  padding: 9em 0 0 0;
+  *zoom: 1;
+}
+#results .within:before,
+#results .within:after {
+  content: '';
+  display: table;
+}
+#results .within:after {
+  clear: both;
+}
+#results .within h3 {
   font-weight: 700;
   font-size: 2.6em;
-  padding: 0 0 0.4em 0;
+  padding: 0 0 0.5em 0;
 }
-#results a {
+#results .within h3 span {
+  font-weight: 300;
+  opacity: 0.6;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
+}
+#results .within a {
   padding: 0.9em 0;
   font-size: 1.3em;
+  line-height: 1.4em;
 }
-#results a + a {
+#results .within a + a {
   border-top: 1px solid #e4e9ec;
 }
-#results a:hover i {
+#results .within a:hover i {
   color: #0085ff;
 }
-#results a span {
+#results .within a span {
   opacity: 0.6;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
   filter: alpha(opacity=60);
@@ -304,9 +327,32 @@ body.light .footer {
   font-size: 0.8em;
   margin-left: 0.3em;
 }
-#results a i {
+#results .within a i {
   float: right;
   color: #e4e9ec;
+}
+.header .logo {
+  position: fixed;
+  top: 2em;
+  left: 2em;
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  cursor: pointer;
+  -webkit-transition: all 0.14s ease;
+  -moz-transition: all 0.14s ease;
+  -o-transition: all 0.14s ease;
+  -ms-transition: all 0.14s ease;
+  transition: all 0.14s ease;
+}
+.header .logo:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.header .logo img {
+  height: 2.6em;
+  pointer-events: none;
 }
 .footer {
   padding: 1em 0;
@@ -1760,12 +1806,13 @@ body.light .footer {
   overflow: hidden;
   color: #505050;
   background-color: #e4e9ec;
+  border-radius: 4px;
   outline: 0;
   padding: 0 1.4em;
   text-align: center;
   border: 0;
-  height: 2.467em;
-  line-height: 2.467em;
+  height: 3em;
+  line-height: 3em;
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;
@@ -1775,6 +1822,8 @@ body.light .footer {
   -ms-transition: all 0.2s ease;
   transition: all 0.2s ease;
   vertical-align: top;
+  -webkit-box-shadow: inset 0 -2px rgba(0,0,0,0.2);
+  box-shadow: inset 0 -2px rgba(0,0,0,0.2);
 }
 .button.small {
   font-size: 0.8em;
@@ -1793,7 +1842,8 @@ body.light .footer {
 }
 .button .material-icons {
   position: relative;
-  top: 3px;
+  top: 2px;
+  margin-right: 2px;
   font-size: 1em;
 }
 .button.outlined {
@@ -1810,8 +1860,6 @@ body.light .footer {
   color: #505050;
 }
 .button:hover {
-  -webkit-box-shadow: none;
-  box-shadow: none;
   background-color: #e4e9ec;
 }
 .button.red {
@@ -1858,17 +1906,17 @@ body.light .footer {
 }
 .button.green {
   color: #fff;
-  background-color: #13ce66;
+  background-color: #02bb55;
 }
 .button.green.outlined {
-  color: #13ce66;
+  color: #02bb55;
   background-color: transparent;
-  -webkit-box-shadow: inset 0px 0px 0px 1px #13ce66;
-  box-shadow: inset 0px 0px 0px 1px #13ce66;
+  -webkit-box-shadow: inset 0px 0px 0px 1px #02bb55;
+  box-shadow: inset 0px 0px 0px 1px #02bb55;
 }
 .button.green:hover {
   color: #fff;
-  background-color: #11be5e;
+  background-color: #02ac4e;
 }
 .button.teal {
   color: #fff;
@@ -2009,7 +2057,7 @@ body.light .footer {
   color: #fff;
   height: 100%;
   font-size: 1em;
-  line-height: 2.467em;
+  line-height: 3em;
 }
 .button.labeled.labeled-right {
   padding: 0 4em 0 1.4em;
@@ -2040,7 +2088,6 @@ ol.list {
 .list .item {
   padding: 0.25em 0;
   position: relative;
-  line-height: 1.2em;
   display: list-item;
   table-layout: fixed;
 }
@@ -2311,9 +2358,9 @@ ol.ordered li[value]:before {
   color: #730000;
 }
 .message.success {
-  background-color: #eafdf3;
-  border-color: #91f5c0;
-  color: #074824;
+  background-color: #e6fff1;
+  border-color: #85ffbb;
+  color: #01411e;
 }
 .message.info {
   background-color: #edf4ff;
@@ -2335,14 +2382,14 @@ ol.ordered li[value]:before {
 }
 .input input,
 .input textarea {
-  font-family: 'freight-sans-pro', 'Open Sans', sans-serif;
-  font-size: 15px;
+  font-family: 'proxima-nova', sans-serif;
+  font-size: 14px;
   color: #3e464a;
   margin: 0;
   font-size: 1em;
   max-width: 100%;
-  height: 2.467em;
-  line-height: 2.467em;
+  height: 3em;
+  line-height: 3em;
   padding: 0.79em 1em;
   outline: 0;
   text-align: left;
@@ -2374,8 +2421,8 @@ ol.ordered li[value]:before {
 .input .go {
   color: rgba(0,0,0,0.3);
   position: absolute;
-  right: 13px;
-  top: 13px;
+  right: 12px;
+  top: 10px;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -2398,6 +2445,9 @@ ol.ordered li[value]:before {
 .input.lg input:focus {
   border-color: #0085ff;
 }
+.input.lg input.error {
+  border-color: #ff4949 !important;
+}
 .input.lg input::-webkit-input-placeholder {
   color: #a3cddb;
 }
@@ -2419,13 +2469,13 @@ ol.ordered li[value]:before {
   border-radius: 0 4px 4px 0;
   display: inline-block;
   vertical-align: top;
-  font-size: 15px;
+  font-size: 14px;
 }
 .action .button {
   border-radius: 4px 0 0 4px;
   display: inline-block;
   vertical-align: top;
-  font-size: 15px;
+  font-size: 14px;
 }
 .action .button + input {
   border-radius: 0 4px 4px 0;
@@ -2555,7 +2605,7 @@ ol.ordered li[value]:before {
   color: #ffc82c;
 }
 .text-green {
-  color: #13ce66;
+  color: #02bb55;
 }
 .text-teal {
   color: #00baa9;
@@ -2609,13 +2659,13 @@ ol.ordered li[value]:before {
   background-color: #efb100 !important;
 }
 .green:not(.button) {
-  background-color: #13ce66 !important;
+  background-color: #02bb55 !important;
 }
 .green:not(.button).light {
-  background-color: #2eec82 !important;
+  background-color: #03fb72 !important;
 }
 .green:not(.button).dark {
-  background-color: #0fa552 !important;
+  background-color: #029644 !important;
 }
 .teal:not(.button) {
   background-color: #00baa9 !important;
@@ -3215,7 +3265,7 @@ ol.ordered li[value]:before {
   filter: alpha(opacity=30);
 }
 .stages .stage.completed i {
-  color: #13ce66;
+  color: #02bb55;
 }
 .stages .stage.active {
   background-color: #f7f9fb;
