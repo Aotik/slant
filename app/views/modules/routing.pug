@@ -10,7 +10,8 @@ if imdb
 			contentType: 'application/json',
 			data: JSON.stringify(data),
 			success: (data) => {
-				transitionResult(data)
+				console.log('two')
+				transitionResult(data, true)
 			}
 		})
 
@@ -27,6 +28,6 @@ if param
 			contentType: 'application/json',
 			data: JSON.stringify(data),
 			success: (results) => {
-				transitionResults(results)
+				transitionResults(results, data.title, true)
 			}
 		})
